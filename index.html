@@ -7,7 +7,6 @@
     <title>Formulario Sencillo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="./estilo.css">
-    <script src=".\index.js"></script>
 </head>
 <body>
     <header>
@@ -17,23 +16,25 @@
     </header>
     <main>
     <section class="form_container">
-        <form class="form" action="">
-            <input type="text" class="form-control form_input" placeholder="Username" id="user">
-            <input type="email" class="form-control form_input " placeholder="E-mail" id="mail">
+        <form class="form" action="" name="formulario">
+            <label class="form-check-label" for="flexRadioDefault1">Nombre</label>
+            <input type="text" class="form-control form_input" placeholder="Ingresa tu nombre" id="nombre" name="nombre">
+            <label class="form-check-label" for="flexRadioDefault1">Apellidos</label>
+            <input type="text" class="form-control form_input " placeholder="Ingresa tu apellido" id="apellido" name="apellido">
             <div class="">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="sexo">
             <label class="form-check-label" for="flexRadioDefault1">Hombre</label>
             </div>
             <div>
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="sexo">
             <label class="form-check-label" for="flexRadioDefault1">Mujer</label>
             </div>
             <div class="">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="che">
             <label class="form-check-label" for="flexCheckDefault">Acepto Terminos y condiciones</label>
             </div>
             <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button" onclick="ingresar()">Ingresar</button>
+                <button class="btn btn-primary" type="submit"  id="ingre">Ingresar</button>
                 </div>
         </form>
     </section>
@@ -45,5 +46,57 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (function () {  
+            var formulario = document.getElementsByName("formulario")[0];
+            elementos = formulario.elements,
+            btn = document.getElementById("ingre");
+            
+            var validarNombre = function (e) {
+                if (formulario.nombre.value == 0) {
+                    alert("Debes ingresar un nombre");
+                }
+            };
+            var nombre = function (e) {
+                validarNombre(e);
+            }
+
+            var validarApellido = function (e) {
+                if (formulario.apellido.value == 0) {
+                    alert("Debes ingresar un apellido");
+                }
+            };
+            var apellido = function (e) {
+                validarApellido(e);
+            }
+
+            var validarSexo = function (e) {
+                if (formulario.sexo[0].checked == true || formulario.sexo[1].checked == true ) {
+                    
+                }else{
+                    alert("Debes seleccionar un sexo");
+                }
+            };
+            var sexo = function (e) {
+                validarSexo(e);
+            }
+            var validarTerminos = function (e) {
+                if (formulario.che.checked == true ) {
+                    
+                }else{
+                    alert("debes aceptar los terminos");
+                }
+            };
+            var terminos = function (e) {
+                validarTerminos(e);
+            }
+
+            formulario.addEventListener("submit",nombre);
+            formulario.addEventListener("submit",apellido);
+            formulario.addEventListener("submit",sexo);
+            formulario.addEventListener("submit",terminos);
+        }())
+    </script>
 </body>
 </html>
